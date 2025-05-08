@@ -6,7 +6,7 @@ pipeline {
             stages {
 	       stage('linting'){
 	       steps {
-	          echo " this code is nested stage'
+	          echo "this code is nested stage"
                 }
             }
         }
