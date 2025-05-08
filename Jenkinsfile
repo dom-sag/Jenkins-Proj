@@ -2,17 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
+        stage('lint and format') {
+            stages {
+	       stage('linting'){
+	       steps {
+	          echo " this code is nested stage'
+                }
             }
         }
 
-        stage('Print YAML') {
+        stage('formating') {
             steps {
-                echo 'Printing contents of testing.yaml...'
-                sh 'cat testing.yaml'
+                echo 'this is formating...'
+               
             }
         }
     }
+}
 }
