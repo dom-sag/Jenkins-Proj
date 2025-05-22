@@ -13,8 +13,8 @@ pipeline {
 	stages {
 		
 	       stage('Build Docker Image') {
-			steps {
-				script {
+		       steps {
+			       script {
 					sh "docker build -t ${params.DOCKER_IMAGE_NAME} . "
 				}
 			}
