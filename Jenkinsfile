@@ -10,7 +10,7 @@ pipeline {
 	     SSH_CREDENTIALS = "docker"
      }
 
-	# stages {
+	stages {
 	#	stage('Checkout Code') {
 	#		steps {
 	#			git branch: 'main', url: "https://github.com/dom-sag/Jenkins-Proj.git"
@@ -25,7 +25,7 @@ pipeline {
 			}
 		}
 		
-		
+	}
 
 	#stage('Deploy Container on EC2') {
 	#	steps {
