@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    parameters{
-	    string(name: 'DOCKER_IMAGE_NAME', defaultvalue: 'docker-ec2', description: 'docker ec2 instance')
-	    string(name: 'EC2_HOST', defaultvalue: 'ubuntu@54.210.254.30', description: 'ec2 host')
+   parameters {
+    string(name: 'DOCKER_IMAGE_NAME', defaultValue: 'docker-ec2', description: 'Docker image name for EC2 deployment')
+    string(name: 'EC2_HOST', defaultValue: 'ubuntu@54.210.254.30', description: 'EC2 instance public IP or hostname')
 
     }
      environment {
