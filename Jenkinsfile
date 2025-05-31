@@ -3,7 +3,7 @@ pipeline {
     
     tools {
         // Intsall the Maven Version congired .
-        maven m399
+        maven M399
     }
     
     stages {
