@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    
+    tools {
+        // Intsall the Maven Version congired .
+        maven m398
+    }
+    
+    stages {
+        stage('Echo Version') {
+            steps {
+                sh 'echo Print maven Verion'
+                sh 'mvn -version'
+                
+            }
+    }
+    stage('Build') {
+        steps {
+            //Get some code from respository
+        }
+    }
+}
