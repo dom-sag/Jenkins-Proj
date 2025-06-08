@@ -1,26 +1,48 @@
 pipeline {
     agent any
 
-   parameters {
-    string(name: 'DOCKER_IMAGE_NAME', defaultValue: 'docker-ec2', description: 'Docker image name for EC2 deployment')
-    string(name: 'EC2_HOST', defaultValue: 'ubuntu@54.210.254.30', description: 'EC2 instance public IP or hostname')
-
+    parameters {
+        DOCKERHUB_CRDENTIALS = credentials('docker_creds')
+        IMAGE_NAME = "https://hub.docker.com/repository/docker/domsag/dock-testing/"
+        IMAGE_TAG = "env.${BUILD_NUMBER}"
     }
-     environment {
-	     SSH_CREDENTIALS = "docker"
-     }
 
-	stages {
-		
-	       stage('Build Docker Image') {
-		       steps {
-			       script {
-					sh "docker build -t ${params.DOCKER_IMAGE_NAME} . "
-				}
-			}
-		}
-		
-	}
+    stages {
+        stage('Checkout code') {
+            steps {
+                checkout scm
 
-	
+            }
+        }
+
+        stage ('Build docker image') {
+            steps {
+                script {
+                    docker.build("${IMAGE_NAME}.${IMAGE_TAG}")
+
+                }
+            }
+        }
+
+        stage('Push to Docker hub') {
+
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io/v1', DOCKERHIB_CREDENTIALS) {
+                    // docker.image("${IMAGE_NAME}:${IMAGE_TAG}").push()
+                }
+            }
+        }
+    }
+}
+
+post {
+    success {
+        echo "image pushed to docker hub"
+    }
+
+    failure {
+        echo "build failed"
+    }
+}
 }
