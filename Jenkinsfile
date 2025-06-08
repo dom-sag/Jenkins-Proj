@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    parameters {
+    environment {
         DOCKERHUB_CRDENTIALS = credentials('docker_creds')
         IMAGE_NAME = "https://hub.docker.com/repository/docker/domsag/dock-testing/"
         IMAGE_TAG = "env.${BUILD_NUMBER}"
